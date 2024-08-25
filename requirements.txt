@@ -1,0 +1,5 @@
+langchain==0.1.13
+langchainhub==0.1.15
+google-api-python-client==2.124.0 
+python-dotenv==1.0.1 
+huggingface_hub==0.22.2
