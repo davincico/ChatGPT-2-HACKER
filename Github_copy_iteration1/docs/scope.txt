@@ -1,0 +1,10 @@
+In the field of information security, traditional vulnerability scanners are subdivided into 12 types according to the different enterprise business architectures, namely:
+Host-based Scanning, Port Scanning, Web Application Vulnerability Scanning, Network Vulnerability Scanning, Database Scanning, Source Code Scanning, Cloud Vulnerability Scanning, Internal Scanning, External Scanning, Assessment Scanning, Discovery Scanning, Compliance Scanning [6].
+ 
+Vulnerability scanners often integrate multiple types of detection functionalities mentioned above. In this report, we focus on discussing web threat detection, which includes 
+- Port Scanning
+- Web Application Vulnerability Scanning
+- Network Vulnerability Scanning
+
+Since attack behaviors typically originate from external sources, website services are often the primary targets for attackers. 
+We can categorize web threat detection into two main directions: defense rule detection and public vulnerability detection.

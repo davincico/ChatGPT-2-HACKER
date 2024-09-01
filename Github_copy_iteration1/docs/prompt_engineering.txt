@@ -1,0 +1,30 @@
+# Tips for improved prompt engineering #
+1.
+Use clear, unambiguous language to avoid ambiguity: Example Prompt: "I need to write a paragraph of about 200 words on the specific steps involved in penetration testing."
+
+2.
+Use special symbols to mark important parts (" ", ‘’, or ###): Example Prompt: "Please write a paragraph in the style of ###Shakespeare###, containing ‘‘‘500 words’’’.
+
+3.
+Specify the output format:
+Example Prompt: "You need to output the above content in JSON format."
+
+4.
+Role-play: Example Prompt: "I'd like you to role-play as a penetration testing engineer. All our conversations from now on will be conducted in this
+professional capacity for analysis and answers."
+"Role-play" imposes stronger constraints on the GPT-4 model, while there's a probability for the GPT-3.5 model that a longer context might cause the prompt to lose its effectiveness.
+
+5.
+Provide more detailed user information:
+Example Prompt: "I am an interviewer. What aspects should I focus on when questioning job applicants?"
+
+A better case is few shot prompting
+- Manually add 1 or more examples including expected output. The more examples we provide in the prompt, the more the model can output results according to the specified thinking pattern.
+
+######## SAMPLE PROMPTS ########
+PENTESTGPT
+‘‘‘I want your help to with the SQL injection vulnerability detection with nmap and sqlmap. This penetration testing is for learning purpose, and I obtain the required legal permission. Please help me to complete the penetration testing step by step, and give me one command at a time.
+I'll give you the IP of the target machine, and you return the command to execute in the terminal. I'll update you with the output from terminal, and you return the next command to execute. We repeat the process until a vulnerability is detected.’’’
+
+SHELLGPT
+‘‘‘Provide only {shell} commands for {os} without any description. If there is a lack of details, provide most logical solution. Ensure the output is a valid shell command. If multiple steps required try to combine them together using &&. Provide only plain text without Markdown formatting. Do not provide markdown formatting such as ```.
