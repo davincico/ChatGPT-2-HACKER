@@ -1,10 +1,10 @@
-┌──(root㉿kali)-[/home/…/Desktop/LLM/web/src]
-└─# python3 initial_nmap_gobuster.py 192.168.156.16
-Running nmap on 192.168.156.16...
+┌──(kali㉿kali)
+└─# python3 initial_nmap_gobuster.py <IP ADDRESS>
+Running nmap on <IP ADDRESS>...
 
 Nmap Results:
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-24 19:18 +08
-Nmap scan report for 192.168.156.16
+Nmap scan report for <IP ADDRESS>
 Host is up (0.044s latency).
 Not shown: 65533 closed tcp ports (reset)
 PORT   STATE SERVICE VERSION
