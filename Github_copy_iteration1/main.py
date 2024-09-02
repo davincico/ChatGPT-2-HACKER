@@ -156,13 +156,17 @@ def extract_port_service_info(input_str: str) -> list:
 #higher fidelity for checking outdated/vulnerable services
 def version_number_checker(version_values):
     filtered_versions=[]
+
     # Iterate over version_values and add to filtered_versions if digits are found
     for version in version_values:
         if any(char.isdigit() for char in version):
             filtered_versions.append(version)
 
-    # return the filtered list w service that has numbers
-    return filtered_versions
+    # return the filtered list w service that has numbers if list is not empty
+    if len(filtered_versions) == 0:
+        print("No available version specific service extracted for further LLM enrichment (Version numbers were not available).")
+    else:
+        return filtered_versions
 
 
 # // MAIN
