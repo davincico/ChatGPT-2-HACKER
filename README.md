@@ -1,43 +1,91 @@
-## LLM Google Search Agent
-
-This agent incorporates the power of Google Search Engine into your LLM, enhancing its capibilities and providing richer responses.
-
-pip install -r requirements.txt
+# LLM 2 Hacker
+All in one vulnerability scanning and pentest tool empowered with autonomous LLM agents.
 
 
-##### Notes for prompting models
-https://stackoverflow.com/questions/76192496/openai-v1-completions-vs-v1-chat-completions-end-points
-Types of endpoints:
-1. /v1/completions endpoint is for the old models such as DaVinci. It is a very powerful model that gets instruction and produces output.
+## Getting Started
+LLM 2 Hacker is an vulnerability scanning and enumeration tool that incorporates the use of LLM models (Large Language models like ChatGPT, Mistral, Llama) for pentesting purposes.
 
-2. The /v1/chat/completions API is for the newer - chat models (as Oleg mentioned). gpt-3.5-turbo is great because it can do everything DaVinci can but its cheaper(1/10 the cost) the down side is that - for it to perform the same as DaVinci it might require bigger input and the input might be more complex.
+1. **LLM 2 Hacker** is a pentesting tool powered by **ChatGPT**. It is highly flexible and allow the use of local LLM model suites as well. Simply specify desired model types in parameters when running.
+2. It is designed to enhance and empower the pentesting process. At the base level, it has **built-in enumeration tools** like nmap, gobuster and wpscan.
 
+## Features
+### Integration of LLM Agents - 2 Main Usecases
 
-**SAMPLE OF CHAT: If you want to use chat gpt models, you need to use /chat/completions API, but your request has to be adjusted.**
+**1. On top of host and domain enumeration, users have the option to enrich scan results:**
+   
+  In-built LLM agents will initiate prompt chains to extract exploit information, detailed instructions and exploit links.
+   
+   * To counteract the known limitations of LLM models being trained on datasets with cut-off training date (i.e. GPT-4-Turbo: April 2023), **LLM 2 Hacker** uses LLM Agents empowered with search capabilities instead.
+   * This vastly expands the available knowledge base leveraged by the LLM.
+   * Functions such as Google Search API are provided to the LLM Agent which uses it in a multi-round process:
 
-prompt = f"Rate the following review as an integer from 1 to 5, where 1 is the worst and 5 is the best: \"{review}\""
+      * LLM Agent recieves user input 
+      * Agent decides how to use tool and generates search query
+      * Agent observed results of tool output and generates thought/future actions
+      * Agent repeats attempts for desired result 
+  
 
-response = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "user", "content": prompt}
-  ]
-)
+**Example Prompt Chain:**
+```json
+{                                             
+    "action": "Google Search",                                                                                                                                                       "action_input": "Apache HTTP Server 2.4.49 exploit site:exploit-db.com"  
+     }       
 
-/v1/chat/completions: gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301
-/v1/completions:    text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001
-
-The chat model performs best when you give examples.
-
-For DaVinci (Or other models based on /v1/completions API) the input would look like an instruction: "Creates two to three sentence short horror stories from the topic 'wind'."
-
-For the chat models the input would look as a chat:
+Observation: Oct 6, 2021 ... Apache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE). CVE-2021-41773 . webapps exploit for Multiple platform. Nov 11, 2021 ... ... Exploit Author: Valentin Lobstein # Vendor Homepage: https://apache.org/ # Version: Apache 2.4.49/2.4.50 (CGI enabled) # Tested on: Debian ... A flaw was found in a change made to path normalization in Apache HTTP Server 2.4.49. An attacker could use a path traversal attack to map URLs to files ... Oct 13, 2021 ... Exploit: Apache HTTP Server 2.4.50 - Path Traversal & Remote Code Execution (RCE) Date: 10/05/2021 Exploit Author: Lucas Souza Oct 25, 2021 ... Apache HTTP Server 2.4.50 - Remote Code Execution (RCE) (2). CVE-2021-42013 . webapps exploit for Multiple platform. Search Exploit Database for Exploits, Papers, and Shellcode. You can ... 2021-10-06, Apache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE) ... Apr 8, 2019 ... 1. Upload exploit to Apache HTTP server 2. Send request to page 3. Await 6:25AM for logrotate to restart Apache 4. python3.5 is now suid 0 Oct 6, 2014 ... ... exploit on : "+page if proxyhost != "": c = httplib.HTTPConnection(proxyhost,proxyport) c.request("GET","http://"+rhost+page,headers=headers) ... Mar 23, 2021 ... Exploit Title: Codiad 2.8.4 - Remote Code Execution (Authenticated) # Discovery by: WangYihang # Vendor Homepage: http://codiad.com/ ... Apr 4, 2003 ... Apache mod_ssl < 2.8.7 OpenSSL - 'OpenFuckV2.c' Remote Buffer Overflow (1). CVE-2002-0082CVE-857 . remote exploit for Unix platform.                                                                                                             
+Thought: json
+{                                                                                                                                                                                                                                           
+    "action": "Final Answer",                                                                                                                                                                                                               
+    "action_input": "Title: Apache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE) CVE-2021-41773\nDescription: A flaw was found in the path normalization process in Apache HTTP Server 2.4.49 that allows an attacker to perform a path traversal attack, potentially leading to remote code execution.\nLink: https://www.exploit-db.com/exploits/50239"                                                                                                           
+}    
 
 ```
-Two-Sentence Horror Story: He always stops crying when I pour the milk on his cereal. I just have to remember not to let him see his face on the carton.
-    
-Topic: Wind
-Two-Sentence Horror Story:
-The output would be completion of the chat. For example: The wind howled through the night, shaking the windows of the house with a sinister force. As I stepped outside, I could feel it calling out to me, beckoning me to follow its chilling path. 
-```
 
+**2. Autonomous SQL Injection Agent**
+
+SQL Injection Agent hunts for login forms, input fields and embed links from a user specified target and performs iterative SQLi on it. Currently only supports GPT-4-Turbo model. Testing was successful on simple login forms with static HTML, under development to include more complex web pages.
+
+*Note: After empirical evaluation, we find that GPT-4 performs better than GPT-3.5 and other LLMs in terms of penetration testing reasoning. In fact, GPT-3.5 leads to failed test in simple tasks.*
+
+* The agent utilizes the Playwright library to interact with the browser elements and parses HTML content of target sites
+* LLM Agent injects SQL payloads into discovered login forms and determines if injection was successful from the response content.
+
+
+*Further uses cases such as Linux Priv Escalation are under development, stay tuned!*
+
+   
+
+
+
+
+
+## Usage
+LLM 2 Hacker is tested under `Python 3.10.` Other Python3 versions should work but are not tested.
+1. To start:
+   
+   * (Recommended) `python3 main.py -t <target IP or URL>` or `python3 main.py --target <target IP or URL>`
+2. LLM Agents
+   * Specify LLM Model to use (Default gpt-4-turbo) `--model gpt-3.5-turbo`
+   * Authorize vulnerability enrichment using LLM Agent `-vp` or `--vuln-prompt`
+   * Authorize full multi-staged LLM Agent vulnerability discovery & enrichment on target `-fp` or `--full-prompt`
+   
+3. Additional features:
+   * Run gobuster directory enumeration `-g` or `--gobuster`. Default wordlist used is `/usr/share/wordlists/dirb/common.txt`
+   * Run wpscan for enumerating wordpress sites `-wps` or `--wpscan`.
+   * Activate exploitdb module for extraction of CVE Link and CVE exploit code (if available) `-e` or `--exploitdb`
+4. Exploitation
+   
+   * Run wpscan bruteforce using password wordlist (Default wordlist: `/usr/share/wordlists/rockyou.txt`) `-wb` or `--wpbrute`. Select wordlist using `-w` or `--wordlist`
+   * Authorize input fields, login page hunt and GPT4-Empowered SQLi Agent injections `-s` or `--sql-inject`
+   
+
+
+
+## Demonstration 
+Running LLM 2 Hacker on sample target:
+![alt text](/img/image.png)
+
+Initiator Nmap scan:
+![alt text](/img/image-1.png)
+
+## Disclaimer
+This tool is for educational and testing purposes only. Do not use it to exploit the vulnerability on any system that you do not own or have permission to test. The authors of this script are not responsible for any misuse or damage caused by its use.

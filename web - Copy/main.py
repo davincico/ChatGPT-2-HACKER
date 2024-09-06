@@ -5,7 +5,7 @@ import requests
 import time
 import os
 from agents.google_agent import *
-import exploitdb
+from exploitdb.exploitdb_agent import *
 import subprocess
 from utils.spinner import loading_bar
 import argparse
@@ -308,7 +308,7 @@ def main(target):
             for i in filtered_version_values:
                 print(f"{LIGHT_GREEN}[*] Calling the exploitDB agent for final data enrichment & verification...{RESET}")
                 loading_bar(0.1)
-                exploit_search=exploitdb.searchEDB(content=f"{i}", nb_results=1)
+                exploit_search=searchEDB(content=f"{i}", nb_results=1)
                 print(exploit_search)
                 if user_confirmation(f"{LIGHT_GREEN}[*] Would you like to grab raw exploit code?"):
                     '''
