@@ -1,0 +1,37 @@
+# Creds #
+######################
+*.env
+
+# Notes & Docs #
+######################
+test.py
+docs/
+test/
+/docs/
+SQLInjector.py
+main_preSQL_backup.py
+\docs\
+docs\*
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+**/__pycache__/
+data/
+*.DS_Store
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# https://www.toptal.com/developers/gitignore

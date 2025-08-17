@@ -1,0 +1,8 @@
+#Save this file as an .env file in this folder
+
+### .env TEMPLATE
+OPENAI_API_KEY = 'YourAPIKey'
+GOOGLE_CSE_ID = 'YourAPIKey'
+GOOGLE_API_KEY = 'YourAPIKey'
+HUGGINGFACEHUB_API_TOKEN = 'YourAPIKey'
+LANGCHAIN_API_KEY = 'YourAPIKey'  # optional for Langsmith tracing

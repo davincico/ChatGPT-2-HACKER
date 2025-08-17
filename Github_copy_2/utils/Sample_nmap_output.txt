@@ -1,0 +1,18 @@
+┌──(kali㉿kali)
+└─# python3 initial_nmap_gobuster.py <IP ADDRESS>
+Running nmap on <IP ADDRESS>...
+
+Nmap Results:
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-24 19:18 +08
+Nmap scan report for <IP ADDRESS>
+Host is up (0.044s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.4 (Ubuntu Linux; protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.51 ((Debian))
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 47.90 seconds
+
+

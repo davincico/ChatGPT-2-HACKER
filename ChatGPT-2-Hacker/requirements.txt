@@ -1,0 +1,10 @@
+bs4
+requests
+langchain
+python-dotenv
+langchain_core
+langchain_openai
+langchain_chroma 
+langchain_community
+langchain_text_splitters 
+langchain_google_community
