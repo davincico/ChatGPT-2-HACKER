@@ -5,3 +5,6 @@
 /sandbox_websites/
 sandbox_websites/*
 venv_and_installs.txt
+\copy
+/copy
+copy
